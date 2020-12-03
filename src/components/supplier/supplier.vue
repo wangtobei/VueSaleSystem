@@ -1,30 +1,36 @@
 <template>
   <div class="supplier">
     <div>
-      <el-button
-        type="primary"
-        icon="el-icon-plus"
-        @click="adddialog = true"
-        circle
-      ></el-button>
-      <el-input
-        placeholder="请输入供货商名称"
-        v-model="name"
-        class="input-with-select"
-      >
-        <el-button
-          slot="append"
-          icon="el-icon-search"
-          @click="querySupplierByName"
-        ></el-button>
-      </el-input>
+      <el-row :gutter="10">
+        <el-col :span="3">
+          <el-button
+            type="primary"
+            icon="el-icon-plus"
+            @click="adddialog = true"
+            circle
+          ></el-button
+        ></el-col>
+        <el-col :span="15"
+          ><el-input
+            placeholder="请输入供货商名称"
+            v-model="name"
+            class="input-with-select"
+          >
+            <el-button
+              slot="append"
+              icon="el-icon-search"
+              @click="querySupplierByName"
+            ></el-button> </el-input
+        ></el-col>
+      </el-row>
+
       <el-dialog
         title="添加供货商"
         :visible.sync="adddialog"
         width="450px"
         @close="getAllSupplier"
       >
-      <Addsupplier />
+        <Addsupplier />
       </el-dialog>
       <el-dialog
         title="编辑供货商"
@@ -32,7 +38,7 @@
         width="440px"
         @close="getAllSupplier"
       >
-      <Editsupplier :updaterow="updaterow" />
+        <Editsupplier :updaterow="updaterow" />
       </el-dialog>
     </div>
     <el-table
@@ -75,8 +81,8 @@
 <script>
 import Axios from "axios";
 import { AXIOS_BASE_URL } from "../../base.config";
-import Addsupplier from './addsupplier.vue';
-import Editsupplier from './editsupplier.vue';
+import Addsupplier from "./addsupplier.vue";
+import Editsupplier from "./editsupplier.vue";
 export default {
   data() {
     return {
@@ -115,34 +121,36 @@ export default {
     //删除选中的产品
     handleDelete(row) {
       console.log(row);
-      Axios.get(AXIOS_BASE_URL + "/supplier/delete/" + row.supID).then((res) => {
-        if (res.data == true) {
-          this.$message({
-            showClose: true,
-            message: "删除成功！",
-            type: "success",
-          });
-          this.getAllSupplier();
-        } else {
-          this.$message({
-            showClose: true,
-            message: "删除失败！",
-            type: "error",
-          });
+      Axios.get(AXIOS_BASE_URL + "/supplier/delete/" + row.supID).then(
+        (res) => {
+          if (res.data == true) {
+            this.$message({
+              showClose: true,
+              message: "删除成功！",
+              type: "success",
+            });
+            this.getAllSupplier();
+          } else {
+            this.$message({
+              showClose: true,
+              message: "删除失败！",
+              type: "error",
+            });
+          }
         }
-      });
+      );
     },
   },
   components: {
     Addsupplier,
-    Editsupplier
+    Editsupplier,
   },
-  watch:{
-    "name":function(value){
-      if(value==""){
+  watch: {
+    name: function (value) {
+      if (value == "") {
         this.getAllSupplier();
       }
-    }
-  }
+    },
+  },
 };
 </script>

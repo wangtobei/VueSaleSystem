@@ -5,7 +5,7 @@
         <el-menu
           default-active="1"
           class="el-menu-vertical-demo"
-          :router=true
+          :router="true"
         >
           <el-menu-item index="">
             <i class="el-icon-menu"></i>
@@ -19,10 +19,16 @@
             <i class="el-icon-date"></i>
             <span slot="title">供应商信息管理</span>
           </el-menu-item>
-          <el-menu-item index="4">
-            <i class="el-icon-document-copy"></i>
-            <span slot="title">进货管理</span>
-          </el-menu-item>
+          <el-submenu index="1">
+            <template slot="title">
+              <i class="el-icon-document-copy"></i>
+              <span>进货管理</span>
+            </template>
+            <el-menu-item-group>
+              <el-menu-item index="/dashboard/addpurchase">添加进货记录</el-menu-item>
+              <el-menu-item index="/dashboard/purchase">查看进货记录</el-menu-item>
+            </el-menu-item-group>
+          </el-submenu>
           <el-menu-item index="5">
             <i class="el-icon-setting"></i>
             <span slot="title">销售管理</span>
@@ -34,11 +40,8 @@
 </template>
 <script>
 export default {
-  methods: {
-
-  },
+  methods: {},
 };
 </script>
 <style scoped>
-
 </style>

@@ -4,8 +4,9 @@ const Login = () => import("../components/login.vue");
 const dashboard = () => import("../views/main.vue");
 const product = () => import("../components/product/product.vue");
 const supplier = () => import("../components/supplier/supplier.vue");
+const purchase = () => import("../components/purchase/purchase.vue");
+const addpurchase=()=>import("../components/purchase/addpurchase.vue")
 Vue.use(VueRouter);
-
 const routes = [
   {
     path: "/",
@@ -27,6 +28,18 @@ const routes = [
         path: "supplier",
         components: {
           dashboard: supplier,
+        },
+      },
+      {
+        path: "purchase",
+        components: {
+          dashboard: purchase,
+        },
+      },
+      {
+        path: "addpurchase",
+        components: {
+          dashboard: addpurchase,
         },
       },
     ],

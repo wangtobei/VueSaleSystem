@@ -1,23 +1,28 @@
 <template>
   <div class="product">
     <div>
-      <el-button
-        type="primary"
-        icon="el-icon-plus"
-        @click="adddialog = true"
-        circle
-      ></el-button>
-      <el-input
-        placeholder="请输入商品名称"
-        v-model="name"
-        class="input-with-select"
-      >
-        <el-button
-          slot="append"
-          icon="el-icon-search"
-          @click="queryProductByName"
-        ></el-button>
-      </el-input>
+      <el-row :gutter="10">
+        <el-col :span="3">
+          <el-button
+            type="primary"
+            icon="el-icon-plus"
+            @click="adddialog = true"
+            circle
+          ></el-button
+        ></el-col>
+        <el-col :span="15">
+          <el-input
+            placeholder="请输入商品名称"
+            v-model="name"
+            class="input-with-select"
+          >
+            <el-button
+              slot="append"
+              icon="el-icon-search"
+              @click="queryProductByName"
+            ></el-button> </el-input
+        ></el-col>
+      </el-row>
       <el-dialog
         title="添加产品"
         :visible.sync="adddialog"
@@ -138,13 +143,13 @@ export default {
     Addproduct,
     Editproduct,
   },
-  watch:{
-    "name":function(value){
-      if(value==""){
-        console.log("chaxun")
+  watch: {
+    name: function (value) {
+      if (value == "") {
+        console.log("chaxun");
         this.getAllProducts();
       }
-    }
-  }
+    },
+  },
 };
 </script>
