@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <h2>欢迎使用XXXXX企业销售管理系统</h2>
+    <h2>欢迎使用方研销售管理系统</h2>
     <el-form ref="form" :model="form" label-width="80px">
       <el-form-item label="用户名：">
         <el-input v-model="form.UserName"></el-input>
@@ -35,7 +35,7 @@ export default {
           if (res.data == true) {
             this.$notify({
               title: "登录成功",
-              message: "欢迎使用xxxx系统",
+              message: "欢迎使用方研销售管理系统",
               type: "success",
             });
             this.$router.push("/dashboard/");

@@ -1,9 +1,6 @@
 <template>
   <div class="addproduct">
     <el-form ref="form" :model="form" label-width="80px">
-      <el-form-item label="商品ID">
-        <el-input v-model="form.id"></el-input>
-      </el-form-item>
       <el-form-item label="商品名称">
         <el-input v-model="form.name"></el-input>
       </el-form-item>
@@ -16,10 +13,9 @@
       <el-form-item label="报警线">
         <el-input v-model="form.salarmNum"></el-input>
       </el-form-item>
-      <el-form-item label="供货商">
+     <el-form-item label="供货商">
         <el-select v-model="form.supId" placeholder="请选择供货商">
-          <el-option label="区域一" value="1"></el-option>
-          <el-option label="区域二" value="2"></el-option>
+          <el-option v-for="item in supplier" :label="item.supName" :value="item.supID"  :key="item.supID"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item>
@@ -33,6 +29,12 @@ import Axios from "axios";
 import qs from "qs";
 import { AXIOS_BASE_URL } from "../../base.config";
 export default {
+   created() {
+    Axios.get(AXIOS_BASE_URL + "/supplier/all").then((res) => {
+      console.log(res);
+      this.supplier = res.data;
+    });
+  },
   props: ["updaterow"],
   watch: {
     updaterow: function (value) {
@@ -54,6 +56,7 @@ export default {
         salarmNum: this.updaterow.salarmNum,
         supId: this.updaterow.supId,
       },
+      supplier:null,
     };
   },
   methods: {

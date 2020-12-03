@@ -7,7 +7,7 @@
           class="el-menu-vertical-demo"
           :router=true
         >
-          <el-menu-item index="1">
+          <el-menu-item index="">
             <i class="el-icon-menu"></i>
             <span slot="title">客户信息管理</span>
           </el-menu-item>
@@ -15,7 +15,7 @@
             <i class="el-icon-document"></i>
             <span slot="title">商品信息管理</span>
           </el-menu-item>
-          <el-menu-item index="3">
+          <el-menu-item index="/dashboard/supplier">
             <i class="el-icon-date"></i>
             <span slot="title">供应商信息管理</span>
           </el-menu-item>

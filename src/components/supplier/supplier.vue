@@ -1,5 +1,5 @@
 <template>
-  <div class="product">
+  <div class="supplier">
     <div>
       <el-button
         type="primary"
@@ -8,31 +8,31 @@
         circle
       ></el-button>
       <el-input
-        placeholder="请输入商品名称"
+        placeholder="请输入供货商名称"
         v-model="name"
         class="input-with-select"
       >
         <el-button
           slot="append"
           icon="el-icon-search"
-          @click="queryProductByName"
+          @click="querySupplierByName"
         ></el-button>
       </el-input>
       <el-dialog
-        title="添加产品"
+        title="添加供货商"
         :visible.sync="adddialog"
-        width="400px"
-        @close="getAllProducts"
+        width="450px"
+        @close="getAllSupplier"
       >
-        <Addproduct />
+      <Addsupplier />
       </el-dialog>
       <el-dialog
-        title="编辑产品"
+        title="编辑供货商"
         :visible.sync="updatedialog"
-        width="400px"
-        @close="getAllProducts"
+        width="440px"
+        @close="getAllSupplier"
       >
-        <Editproduct :updaterow="updaterow" />
+      <Editsupplier :updaterow="updaterow" />
       </el-dialog>
     </div>
     <el-table
@@ -42,12 +42,11 @@
       element-loading-background="rgba(0, 0, 0, 0.8)"
       :data="tableData"
     >
-      <el-table-column prop="id" label="商品编号"> </el-table-column>
-      <el-table-column prop="name" label="商品名称"> </el-table-column>
-      <el-table-column prop="price" label="单价"> </el-table-column>
-      <el-table-column prop="salarmNum" label="预警线"> </el-table-column>
-      <el-table-column prop="stockNum" label="库存"> </el-table-column>
-      <el-table-column prop="supName" label="供货商"> </el-table-column>
+      <el-table-column prop="supID" label="供货商编号"> </el-table-column>
+      <el-table-column prop="supName" label="供货商名称"> </el-table-column>
+      <el-table-column prop="supContact" label="联系人姓名"> </el-table-column>
+      <el-table-column prop="supPhone" label="供货商电话"> </el-table-column>
+      <el-table-column prop="address" label="供货商地址"> </el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
           <el-button
@@ -75,9 +74,9 @@
 </template>
 <script>
 import Axios from "axios";
-import Addproduct from "./addproduct.vue";
 import { AXIOS_BASE_URL } from "../../base.config";
-import Editproduct from "./editproduct.vue";
+import Addsupplier from './addsupplier.vue';
+import Editsupplier from './editsupplier.vue';
 export default {
   data() {
     return {
@@ -89,19 +88,19 @@ export default {
     };
   },
   created: function () {
-    this.getAllProducts();
+    this.getAllSupplier();
   },
   methods: {
     //获取所有产品
-    getAllProducts() {
-      Axios.get(AXIOS_BASE_URL + "/product/all").then((res) => {
+    getAllSupplier() {
+      Axios.get(AXIOS_BASE_URL + "/supplier/all").then((res) => {
         console.log(res);
         this.tableData = res.data;
       });
     },
-    queryProductByName() {
+    querySupplierByName() {
       console.log(this.name);
-      Axios.get(AXIOS_BASE_URL + "/product/query", {
+      Axios.get(AXIOS_BASE_URL + "/supplier/query", {
         params: { name: this.name },
       }).then((res) => {
         console.log(res);
@@ -116,14 +115,14 @@ export default {
     //删除选中的产品
     handleDelete(row) {
       console.log(row);
-      Axios.get(AXIOS_BASE_URL + "/product/delete/" + row.id).then((res) => {
+      Axios.get(AXIOS_BASE_URL + "/supplier/delete/" + row.supID).then((res) => {
         if (res.data == true) {
           this.$message({
             showClose: true,
             message: "删除成功！",
             type: "success",
           });
-          this.getAllProducts();
+          this.getAllSupplier();
         } else {
           this.$message({
             showClose: true,
@@ -135,14 +134,13 @@ export default {
     },
   },
   components: {
-    Addproduct,
-    Editproduct,
+    Addsupplier,
+    Editsupplier
   },
   watch:{
     "name":function(value){
       if(value==""){
-        console.log("chaxun")
-        this.getAllProducts();
+        this.getAllSupplier();
       }
     }
   }
