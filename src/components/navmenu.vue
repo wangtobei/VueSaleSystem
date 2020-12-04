@@ -3,11 +3,11 @@
     <el-row class="tac">
       <el-col :span="24">
         <el-menu
-          default-active="1"
+          default-active="/dashboard/"
           class="el-menu-vertical-demo"
           :router="true"
         >
-          <el-menu-item index="">
+          <el-menu-item index="/dashboard/">
             <i class="el-icon-menu"></i>
             <span slot="title">客户信息管理</span>
           </el-menu-item>
