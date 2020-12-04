@@ -5,7 +5,8 @@ const dashboard = () => import("../views/main.vue");
 const product = () => import("../components/product/product.vue");
 const supplier = () => import("../components/supplier/supplier.vue");
 const purchase = () => import("../components/purchase/purchase.vue");
-const addpurchase=()=>import("../components/purchase/addpurchase.vue")
+const addpurchase = () => import("../components/purchase/addpurchase.vue");
+const staff = () => import("../components/staff/staff.vue");
 Vue.use(VueRouter);
 const routes = [
   {
@@ -40,6 +41,12 @@ const routes = [
         path: "addpurchase",
         components: {
           dashboard: addpurchase,
+        },
+      },
+      {
+        path: "staff",
+        components: {
+          dashboard: staff,
         },
       },
     ],

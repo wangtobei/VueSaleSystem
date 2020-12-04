@@ -33,6 +33,10 @@
             <i class="el-icon-setting"></i>
             <span slot="title">销售管理</span>
           </el-menu-item>
+          <el-menu-item index="/dashboard/staff">
+            <i class="el-icon-user"></i>
+            <span slot="title">员工管理</span>
+          </el-menu-item>
         </el-menu>
       </el-col>
     </el-row>

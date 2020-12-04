@@ -18,6 +18,7 @@
 <script>
 import axios from "axios";
 import qs from "qs";
+import { AXIOS_BASE_URL } from '../base.config';
 export default {
   data() {
     return {
@@ -30,7 +31,7 @@ export default {
   methods: {
     onSubmit() {
       axios
-        .post("http://localhost:8080/login", qs.stringify(this.form))
+        .post(AXIOS_BASE_URL+"/login", qs.stringify(this.form))
         .then((res) => {
           if (res.data == true) {
             this.$notify({
