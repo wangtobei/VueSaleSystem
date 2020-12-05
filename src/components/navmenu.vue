@@ -1,6 +1,6 @@
 <template>
   <div class="navmenu">
-    <el-row class="tac">
+    <el-row>
       <el-col :span="24">
         <el-menu
           default-active="/dashboard/"

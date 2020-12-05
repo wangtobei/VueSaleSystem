@@ -50,6 +50,7 @@ export default {
         });
         return false;
       }
+      Axios.defaults.withCredentials=true
       Axios.post(AXIOS_BASE_URL + "/customer/add", qs.stringify(this.form)).then(
         (res) => {
           if (res.data == true) {

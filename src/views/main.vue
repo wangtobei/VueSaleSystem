@@ -3,7 +3,10 @@
     <div class="header">
       <el-dropdown trigger="click">
         <span class="el-dropdown-link">
-           <el-avatar :size="50" src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
+          <el-avatar
+            :size="50"
+            src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
+          ></el-avatar>
         </span>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item class="clearfix">
@@ -23,14 +26,39 @@
 <script>
 import navmenu from "@/components/navmenu";
 import Navmenu from "../components/navmenu.vue";
+import Axios from "axios";
+import { AXIOS_BASE_URL } from "../base.config";
+Axios.defaults.withCredentials=true
 export default {
-  methods:{
-logout(){
-   this.$router.push("/");
-}
+  methods: {
+    logout() {
+      Axios.get(AXIOS_BASE_URL + "/logout").then((res) => {
+        if ((res.data = true)) {
+          this.$message({
+            message: "您已经成功退出系统了哦~",
+            type: "success",
+            showClose: true,
+            center: true,
+          });
+          this.$router.push("/");
+        }
+      });
+    },
   },
   components: {
     navmenu,
+  },
+  //使用导航守卫看当前用户是否登录系统
+  beforeRouteEnter(to, from, next) {
+    Axios.get(AXIOS_BASE_URL + "/check").then((res) => {
+      if (res.data == false) {
+        console.log("未登陆")
+        window.location.href = '/';
+      }
+      else{
+        next();
+      }
+    });
   },
 };
 </script>
