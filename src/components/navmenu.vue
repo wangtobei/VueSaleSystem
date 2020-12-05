@@ -29,7 +29,7 @@
               <el-menu-item index="/dashboard/purchase">查看进货记录</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
-          <el-menu-item index="5">
+          <el-menu-item index="/dashboard/sale">
             <i class="el-icon-setting"></i>
             <span slot="title">销售管理</span>
           </el-menu-item>

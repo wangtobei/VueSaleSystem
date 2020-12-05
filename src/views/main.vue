@@ -1,6 +1,17 @@
 <template>
   <div>
-    <div class="header"></div>
+    <div class="header">
+      <el-dropdown trigger="click">
+        <span class="el-dropdown-link">
+           <el-avatar :size="50" src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
+        </span>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item class="clearfix">
+            <span @click="logout">退出</span>
+          </el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+    </div>
     <div class="main">
       <el-row :gutter="10">
         <el-col :span="4"><navmenu /> </el-col>
@@ -13,6 +24,11 @@
 import navmenu from "@/components/navmenu";
 import Navmenu from "../components/navmenu.vue";
 export default {
+  methods:{
+logout(){
+   this.$router.push("/");
+}
+  },
   components: {
     navmenu,
   },
@@ -30,7 +46,7 @@ export default {
   opacity: 0.9;
   background-color: white;
 }
-.main{
-    margin-top: 90px;
+.main {
+  margin-top: 90px;
 }
 </style>
