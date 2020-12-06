@@ -17,25 +17,25 @@
       </el-form-item>
 
       <el-form-item label="供货商">
-        <el-col :span="10">
+        <el-col :span="12">
           <el-input v-model="currentSupplier" :disabled="true"></el-input>
         </el-col>
       </el-form-item>
 
       <el-form-item label="单价">
-        <el-col :span="10">
+        <el-col :span="12">
           <el-input v-model="price" :disabled="true"> </el-input>
         </el-col>
       </el-form-item>
 
       <el-form-item label="进货数量">
-        <el-col :span="10">
+        <el-col :span="12">
           <el-input-number v-model="form.count" :min="1"></el-input-number>
         </el-col>
       </el-form-item>
 
       <el-form-item label="总价">
-        <el-col :span="10">
+        <el-col :span="12">
           <el-input v-model="currentPrices" :disabled="true"></el-input>
         </el-col>
       </el-form-item>

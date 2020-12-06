@@ -17,12 +17,10 @@
       </el-dropdown>
     </div>
     <div class="main">
-      <el-row :gutter="10">
+      <el-row>
         <el-col :span="4"><navmenu /></el-col>
         <el-col :span="20">
-          <keep-alive>
             <router-view name="dashboard" />
-          </keep-alive>
         </el-col>
       </el-row>
     </div>
