@@ -18,6 +18,7 @@
       element-loading-spinner="el-icon-loading"
       element-loading-background="rgba(0, 0, 0, 0.8)"
       :data="tableData"
+      :default-sort = "{prop: 'pcID', order: 'ascending'}"
     >
       <el-table-column prop="pcID" label="进货单号"> </el-table-column>
       <el-table-column prop="product.name" label="商品名称"> </el-table-column>

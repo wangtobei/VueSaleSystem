@@ -12,7 +12,7 @@
         ></el-col>
         <el-col :span="15">
           <el-input
-            placeholder="请输入员工名："
+            placeholder="请输入员工名"
             v-model="name"
             class="input-with-select"
           >
@@ -46,6 +46,7 @@
       element-loading-spinner="el-icon-loading"
       element-loading-background="rgba(0, 0, 0, 0.8)"
       :data="tableData"
+       :default-sort = "{prop: 'empID', order: 'ascending'}"
     >
       <el-table-column prop="empID" label="员工编号"> </el-table-column>
       <el-table-column prop="userName" label="员工名称"> </el-table-column>

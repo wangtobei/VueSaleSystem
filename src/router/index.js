@@ -18,7 +18,6 @@ const routes = [
   },
   {
     path: "/dashboard",
-    name: "dashboard",
     component: dashboard,
     children: [
       {

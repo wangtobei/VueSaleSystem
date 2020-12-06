@@ -15,24 +15,28 @@
           ></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="商品单价">
-        <el-col :span="5">
+
+      <el-form-item label="供货商">
+        <el-col :span="10">
+          <el-input v-model="currentSupplier" :disabled="true"></el-input>
+        </el-col>
+      </el-form-item>
+
+      <el-form-item label="单价">
+        <el-col :span="10">
           <el-input v-model="price" :disabled="true"> </el-input>
         </el-col>
       </el-form-item>
+
       <el-form-item label="进货数量">
-        <el-col :span="5">
+        <el-col :span="10">
           <el-input-number v-model="form.count" :min="1"></el-input-number>
         </el-col>
       </el-form-item>
+
       <el-form-item label="总价">
-        <el-col :span="5">
+        <el-col :span="10">
           <el-input v-model="currentPrices" :disabled="true"></el-input>
-        </el-col>
-      </el-form-item>
-      <el-form-item label="供货商">
-        <el-col :span="5">
-          <el-input v-model="currentSupplier" :disabled="true"></el-input>
         </el-col>
       </el-form-item>
       <el-form-item label="进货日期">
@@ -123,3 +127,11 @@ export default {
   },
 };
 </script>
+<style scoped>
+.addpurchase {
+  width: 400px;
+  margin: auto;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+}
+</style>

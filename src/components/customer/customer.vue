@@ -27,7 +27,7 @@
         title="添加客户信息"
         :visible.sync="adddialog"
         width="400px"
-        @close="getAllcustomers"
+        @close="queryCustomerByPage(currentpage)"
       >
         <Addcustomer />
       </el-dialog>
@@ -35,7 +35,7 @@
         title="编辑客户信息"
         :visible.sync="updatedialog"
         width="400px"
-        @close="getAllcustomers"
+        @close="queryCustomerByPage(currentpage)"
       >
         <Editcustomer :updaterow="updaterow" />
       </el-dialog>
@@ -46,6 +46,7 @@
       element-loading-spinner="el-icon-loading"
       element-loading-background="rgba(0, 0, 0, 0.8)"
       :data="tableData"
+      :default-sort="{ prop: 'cid', order: 'ascending' }"
     >
       <el-table-column prop="cid" label="客户编号"> </el-table-column>
       <el-table-column prop="name" label="客户名称"> </el-table-column>
@@ -74,6 +75,15 @@
         </template>
       </el-table-column>
     </el-table>
+    <el-pagination
+      layout="prev, pager, next"
+      :total="count"
+      :page-size="size"
+      @current-change="queryCustomerByPage"
+      @prev-click="queryCustomerByPage"
+      @next-click="queryCustomerByPage"
+    >
+    </el-pagination>
   </div>
 </template>
 <script>
@@ -89,19 +99,18 @@ export default {
       updatedialog: false,
       updaterow: null,
       name: "",
+      count: 0,
+      size: 1,
+      currentpage: 1,
     };
   },
   created: function () {
-    this.getAllcustomers();
+    Axios.get(AXIOS_BASE_URL + "/customer/count").then((res) => {
+      this.count = res.data;
+    });
+    this.queryCustomerByPage(this.currentpage);
   },
   methods: {
-    //获取所有产品
-    getAllcustomers() {
-      Axios.get(AXIOS_BASE_URL + "/customer/all").then((res) => {
-        console.log(res);
-        this.tableData = res.data;
-      });
-    },
     queryCustomerByName() {
       console.log(this.name);
       Axios.get(AXIOS_BASE_URL + "/customer/query", {
@@ -126,7 +135,7 @@ export default {
             message: "删除成功！",
             type: "success",
           });
-          this.getAllcustomers();
+          this.queryCustomerByPage(this.currentpage);
         } else {
           this.$message({
             showClose: true,
@@ -134,6 +143,16 @@ export default {
             type: "error",
           });
         }
+      });
+    },
+    //分页查询
+    queryCustomerByPage(page) {
+      console.log("现在是" + page);
+      this.currentpage = page;
+      Axios.get(AXIOS_BASE_URL + "/customer/page", {
+        params: { page: page, size: this.size },
+      }).then((res) => {
+        this.tableData = res.data;
       });
     },
   },
@@ -144,7 +163,7 @@ export default {
   watch: {
     name: function (value) {
       if (value == "") {
-        this.getAllcustomers();
+        this.queryCustomerByPage(this.currentpage);
       }
     },
   },

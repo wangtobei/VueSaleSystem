@@ -46,6 +46,7 @@
       element-loading-spinner="el-icon-loading"
       element-loading-background="rgba(0, 0, 0, 0.8)"
       :data="tableData"
+      :default-sort = "{prop: 'id', order: 'ascending'}"
     >
       <el-table-column prop="id" label="商品编号"> </el-table-column>
       <el-table-column prop="name" label="商品名称"> </el-table-column>

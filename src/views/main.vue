@@ -1,7 +1,8 @@
 <template>
   <div>
     <div class="header">
-      <el-dropdown trigger="click">
+      <img src="../assets/1.png" alt="" style="height: 70px" />
+      <el-dropdown trigger="click" class="user">
         <span class="el-dropdown-link">
           <el-avatar
             :size="50"
@@ -17,8 +18,12 @@
     </div>
     <div class="main">
       <el-row :gutter="10">
-        <el-col :span="4"><navmenu /> </el-col>
-        <el-col :span="20"><router-view name="dashboard" /></el-col>
+        <el-col :span="4"><navmenu /></el-col>
+        <el-col :span="20">
+          <keep-alive>
+            <router-view name="dashboard" />
+          </keep-alive>
+        </el-col>
       </el-row>
     </div>
   </div>
@@ -28,7 +33,7 @@ import navmenu from "@/components/navmenu";
 import Navmenu from "../components/navmenu.vue";
 import Axios from "axios";
 import { AXIOS_BASE_URL } from "../base.config";
-Axios.defaults.withCredentials=true
+Axios.defaults.withCredentials = true;
 export default {
   methods: {
     logout() {
@@ -52,10 +57,9 @@ export default {
   beforeRouteEnter(to, from, next) {
     Axios.get(AXIOS_BASE_URL + "/check").then((res) => {
       if (res.data == false) {
-        console.log("未登陆")
-        window.location.href = '/';
-      }
-      else{
+        console.log("未登陆");
+        window.location.href = "/";
+      } else {
         next();
       }
     });
@@ -65,16 +69,21 @@ export default {
 <style scoped>
 .header {
   height: 70px;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 12px 0 #6a9ca3;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 100;
   opacity: 0.9;
-  background-color: white;
+  background-color: #6fb8c4;
 }
 .main {
   margin-top: 90px;
+}
+.user {
+  float: right;
+  margin-right: 30px;
+  margin-top: 10px;
 }
 </style>

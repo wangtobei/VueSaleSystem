@@ -47,6 +47,7 @@
       element-loading-spinner="el-icon-loading"
       element-loading-background="rgba(0, 0, 0, 0.8)"
       :data="tableData"
+       :default-sort = "{prop: 'supID', order: 'ascending'}"
     >
       <el-table-column prop="supID" label="供货商编号"> </el-table-column>
       <el-table-column prop="supName" label="供货商名称"> </el-table-column>
