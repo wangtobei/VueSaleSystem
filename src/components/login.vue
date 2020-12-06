@@ -1,19 +1,27 @@
 <template>
-  <div class="login_bg">
-    <div class="login">
-      <h2 style="text-align: center">WELCOME TO USE THIS SYSTEM.</h2>
-      <el-form ref="form" :model="form" label-width="80px">
-        <el-form-item label="用户名：">
-          <el-input v-model="form.UserName"></el-input>
-        </el-form-item>
-        <el-form-item label="密码：">
-          <el-input v-model="form.PassWord" show-password></el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="onSubmit">登录</el-button>
-        </el-form-item>
-      </el-form>
-    </div>
+  <div class="login">
+    <h2 style="text-align: center">WELCOME TO USE THIS SYSTEM.</h2>
+    <el-form ref="form" :model="form">
+      <el-form-item>
+        <el-input
+          v-model="form.UserName"
+          placeholder="请输入用户名："
+        ></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-input
+          v-model="form.PassWord"
+          show-password
+          placeholder="请输入密码："
+          @change="onSubmit"
+        ></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="onSubmit" style="width: 100%"
+          >登录</el-button
+        >
+      </el-form-item>
+    </el-form>
   </div>
 </template>
 <script>
@@ -33,6 +41,10 @@ export default {
   },
   methods: {
     onSubmit() {
+      if (this.form.UserName == "" || this.form.PassWord == "") {
+        this.$message.error("用户信息不正确，请重新输入！");
+        return false;
+      }
       Axios.post(AXIOS_BASE_URL + "/login", qs.stringify(this.form)).then(
         (res) => {
           if (res.data == true) {
@@ -59,6 +71,7 @@ export default {
   margin-top: 100px;
   padding: 20px;
   background-color: white;
+  opacity: 0.9;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
 }
 h2 {
