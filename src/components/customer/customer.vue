@@ -144,9 +144,17 @@ export default {
           });
         }
       });
+      //删除以后重新查询下总数
+      Axios.get(AXIOS_BASE_URL + "/customer/count").then((res) => {
+        this.count = res.data;
+      });
     },
     //分页查询
     queryCustomerByPage(page) {
+      //查询之前先查询总数
+      Axios.get(AXIOS_BASE_URL + "/customer/count").then((res) => {
+        this.count = res.data;
+      });
       console.log("现在是" + page);
       this.currentpage = page;
       Axios.get(AXIOS_BASE_URL + "/customer/page", {
