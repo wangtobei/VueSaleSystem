@@ -99,9 +99,9 @@ export default {
       updatedialog: false,
       updaterow: null,
       name: "",
-      count: 0,
-      size: 1,
-      currentpage: 1,
+      count: 0, //数据库中数据的总量
+      size: 2, //当前每页显示的数量
+      currentpage: 1, //当前页码
     };
   },
   created: function () {
@@ -112,6 +112,7 @@ export default {
   },
   methods: {
     queryCustomerByName() {
+      this.count = 0;
       console.log(this.name);
       Axios.get(AXIOS_BASE_URL + "/customer/query", {
         params: { name: this.name },
@@ -171,6 +172,9 @@ export default {
   watch: {
     name: function (value) {
       if (value == "") {
+        Axios.get(AXIOS_BASE_URL + "/customer/count").then((res) => {
+          this.count = res.data;
+        });
         this.queryCustomerByPage(this.currentpage);
       }
     },
