@@ -18,9 +18,9 @@
     </div>
     <div class="main">
       <el-row>
-        <el-col :span="4"><navmenu /></el-col>
+        <el-col :span="4" ><navmenu /></el-col>
         <el-col :span="20">
-            <router-view name="dashboard" />
+          <router-view name="dashboard" />
         </el-col>
       </el-row>
     </div>

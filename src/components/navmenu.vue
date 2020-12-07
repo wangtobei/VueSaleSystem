@@ -7,19 +7,19 @@
           class="el-menu-vertical-demo"
           :router="true"
         >
-          <el-menu-item index="/dashboard/" :disabled="customer">
+          <el-menu-item index="/dashboard/" v-if="!customer">
             <i class="el-icon-menu"></i>
             <span slot="title">客户信息管理</span>
           </el-menu-item>
-          <el-menu-item index="/dashboard/product" :disabled="product">
+          <el-menu-item index="/dashboard/product" v-if="!product">
             <i class="el-icon-document"></i>
             <span slot="title">商品信息管理</span>
           </el-menu-item>
-          <el-menu-item index="/dashboard/supplier" :disabled="supplier">
+          <el-menu-item index="/dashboard/supplier" v-if="!supplier">
             <i class="el-icon-date"></i>
             <span slot="title">供应商信息管理</span>
           </el-menu-item>
-          <el-submenu index="1" :disabled="purchase">
+          <el-submenu index="1" v-if="!purchase">
             <template slot="title">
               <i class="el-icon-document-copy"></i>
               <span>进货管理</span>
@@ -33,11 +33,11 @@
               >
             </el-menu-item-group>
           </el-submenu>
-          <el-menu-item index="/dashboard/sale" :disabled="sale">
+          <el-menu-item index="/dashboard/sale" v-if="!sale">
             <i class="el-icon-setting"></i>
             <span slot="title">销售管理</span>
           </el-menu-item>
-          <el-menu-item index="/dashboard/staff" :disabled="staff">
+          <el-menu-item index="/dashboard/staff" v-if="!staff">
             <i class="el-icon-user"></i>
             <span slot="title">员工管理</span>
           </el-menu-item>
