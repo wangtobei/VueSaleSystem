@@ -46,7 +46,8 @@
       element-loading-spinner="el-icon-loading"
       element-loading-background="rgba(0, 0, 0, 0.8)"
       :data="tableData"
-      :default-sort = "{prop: 'id', order: 'ascending'}"
+      :default-sort="{ prop: 'id', order: 'ascending' }"
+      :row-class-name="tableRowClassName"
     >
       <el-table-column prop="id" label="商品编号"> </el-table-column>
       <el-table-column prop="name" label="商品名称"> </el-table-column>
@@ -79,6 +80,13 @@
     </el-table>
   </div>
 </template>
+
+<style>
+.el-table .warning-row {
+  background: rgb(245, 184, 168);
+}
+</style>
+
 <script>
 import Axios from "axios";
 import Addproduct from "./addproduct.vue";
@@ -98,6 +106,14 @@ export default {
     this.getAllProducts();
   },
   methods: {
+    tableRowClassName({ row, rowIndex }) {
+      console.log(row);
+      if (row.stockNum <= row.salarmNum) {
+        console.log("11111111");
+        return "warning-row";
+      }
+      return "";
+    },
     //获取所有产品
     getAllProducts() {
       Axios.get(AXIOS_BASE_URL + "/product/all").then((res) => {

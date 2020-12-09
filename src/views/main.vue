@@ -10,12 +10,12 @@
           ></el-avatar>
         </span>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item class="clearfix">
+          <el-dropdown-item>
             <span @click="logout">退出</span>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
-    </div>
+    </div> 
     <div class="main">
       <el-row>
         <el-col :span="4" ><navmenu /></el-col>
@@ -67,7 +67,6 @@ export default {
 <style scoped>
 .header {
   height: 70px;
-  box-shadow: 0 2px 12px 0 #6a9ca3;
   position: fixed;
   top: 0;
   left: 0;

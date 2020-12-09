@@ -83,7 +83,7 @@ export default {
           sitekey: this.site_key,
           callback: this.check,
         });
-      }, 1000);
+      }, 200);
     },
   },
 };
@@ -96,10 +96,12 @@ export default {
   left: 0;
   right: 0;
   background-image: url("../assets/bg2.jpg");
+  background-size: cover;
+  background-position: center;
 }
 .login {
   width: 300px;
-  height: 350px;
+  height: 370px;
   margin: auto;
   margin-top: 100px;
   margin-right: 200px;
